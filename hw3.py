@@ -43,10 +43,7 @@ def main():
 
     x_s = [np.copy(x)]
     for i in range(1000):
-        if local_norm(F, x, c) >  1e-16:
-            t = t + gamma/local_norm(F, x, c)
-        else:
-            t = t + 1e-4
+        t = t + gamma/local_norm(F, x, c)
         p = t * c + F.grad(x)
         xi = local_norm(F, x, p)
         x = x - (1/(1+xi)) * F.hessian_inv(x) @ p
